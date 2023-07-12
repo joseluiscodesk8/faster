@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../styles/index.module.scss";
+import Logo from "./components/Logo";
 
 const Form = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -13,6 +15,12 @@ const Form = () => {
   });
   const [success, setSuccess] = useState(false);
   const [name, setName] = useState("");
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  }, []);
 
   const handleChange = (e) => {
     setFormData({
@@ -63,7 +71,9 @@ const Form = () => {
 
   return (
     <>
-      {success ? (
+      {isLoading ? (
+        <Logo />
+      ) : success ? (
         <section>
           <h2>¡Registro exitoso!</h2>
           <p>Tus datos han sido registrados correctamente.</p>
@@ -149,6 +159,26 @@ const Form = () => {
                 required
               />
               <label>Licencia: Parte Trasera:</label>
+            </section>
+
+            <section className={styles.inputContainer}>
+              <input
+                type="file"
+                name="backImage"
+                onChange={handleChange}
+                required
+              />
+              <label>Matricula: Parte Delantera:</label>
+            </section>
+
+            <section className={styles.inputContainer}>
+              <input
+                type="file"
+                name="backImage"
+                onChange={handleChange}
+                required
+              />
+              <label>Matricula: Parte Trasera:</label>
             </section>
 
             <section className={styles.inputContainer}>

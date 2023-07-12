@@ -1,5 +1,36 @@
-function Trip() {
-  return <div>Trip</div>;
-}
+import { useEffect, useRef } from "react";
+import "ol/ol.css";
+import Map from "ol/Map";
+import View from "ol/View";
+import TileLayer from "ol/layer/Tile";
+import OSM from "ol/source/OSM";
+import FullScreen from "ol/control/FullScreen";
+import styles from "../styles/index.module.scss";
+
+const Trip = () => {
+  const mapContainerRef = useRef(null);
+
+  useEffect(() => {
+    if (mapContainerRef.current) {
+      const map = new Map({
+        target: mapContainerRef.current,
+        layers: [
+          new TileLayer({
+            source: new OSM(),
+          }),
+        ],
+      });
+
+      const fullScreenControl = new FullScreen();
+      map.addControl(fullScreenControl);
+    }
+  }, []);
+
+  return (
+    <section className={styles.mapContainer}>
+      <div ref={mapContainerRef} style={{ width: "100%", height: "100%" }} />
+    </section>
+  );
+};
 
 export default Trip;
