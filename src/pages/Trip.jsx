@@ -5,6 +5,8 @@ import View from "ol/View";
 import TileLayer from "ol/layer/Tile";
 import OSM from "ol/source/OSM";
 import FullScreen from "ol/control/FullScreen";
+import Geolocation from "ol/Geolocation";
+import { fromLonLat } from "ol/proj";
 import styles from "../styles/index.module.scss";
 
 const Trip = () => {
@@ -19,6 +21,27 @@ const Trip = () => {
             source: new OSM(),
           }),
         ],
+      });
+
+      const view = new View({
+        center: fromLonLat([-0.1276, 51.5074]), // London coordinates
+        zoom: 12,
+      });
+
+      map.setView(view);
+
+      const geolocation = new Geolocation({
+        trackingOptions: {
+          enableHighAccuracy: true,
+        },
+        projection: view.getProjection(),
+      });
+
+      geolocation.setTracking(true);
+
+      geolocation.on("change:position", () => {
+        const coordinates = geolocation.getPosition();
+        view.setCenter(coordinates);
       });
 
       const fullScreenControl = new FullScreen();
