@@ -50,9 +50,14 @@ const Trip = () => {
   }, []);
 
   return (
-    <section className={styles.mapContainer}>
-      <div ref={mapContainerRef} style={{ width: "100%", height: "100%" }} />
-    </section>
+    <>
+      <section className={styles.mapContainer}>
+        <div ref={mapContainerRef} style={{ width: "100%", height: "100%" }} />
+      </section>
+      <section className={styles.info}>
+        <p>7 Trips</p> <p>The Last Trip: 6.5Km</p>
+      </section>
+    </>
   );
 };
 

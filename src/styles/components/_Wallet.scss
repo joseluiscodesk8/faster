@@ -1,0 +1,41 @@
+.walletContainer {
+  display: flex;
+  flex-direction: column;
+  width: 95vw;
+  max-width: 500px;
+  height: 80vh;
+  margin: auto;
+  //border-radius: 15px;
+  //box-shadow: inset 0 0 15px #00000050;
+  //border: 1px solid #000;
+
+  & .recargarWallet {
+    width: 60%;
+    margin: 20px auto;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: inset 0 0 15px #00000050;
+  }
+
+  & .wallet {
+    width: 60%;
+    margin: 20px auto;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: inset 0 0 15px #00000050;
+    //border: 1px solid #000;
+  }
+
+  & .trips {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    height: 300px;
+    overflow: scroll;
+    margin: auto;
+    padding: 2%;
+    border-radius: 15px;
+    box-shadow: inset 0 0 15px #00000050;
+  }
+}

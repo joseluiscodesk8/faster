@@ -9,7 +9,7 @@ const Logo = () => {
           src="/faster.png"
           priority={false}
           alt="img"
-          width={300}
+          width={340}
           height={100}
         />
       </picture>

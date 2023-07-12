@@ -8,7 +8,7 @@ const Manu = () => {
         <ul>
           <li>
             <Link href={"/"} className={styles.link}>
-              Profile
+              Registro
             </Link>
           </li>
           <li>
@@ -17,7 +17,7 @@ const Manu = () => {
             </Link>
           </li>
           <li>
-            <Link href={"/"} className={styles.link}>
+            <Link href={"/Wallet"} className={styles.link}>
               Wallet
             </Link>
           </li>
