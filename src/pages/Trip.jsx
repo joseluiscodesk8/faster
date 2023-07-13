@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import "ol/ol.css";
 import Map from "ol/Map";
 import View from "ol/View";
@@ -50,14 +51,24 @@ const Trip = () => {
   }, []);
 
   return (
-    <>
-      <section className={styles.mapContainer}>
-        <div ref={mapContainerRef} style={{ width: "100%", height: "100%" }} />
-      </section>
-      <section className={styles.info}>
-        <p>7 Trips</p> <p>The Last Trip: 6.5Km</p>
-      </section>
-    </>
+    <AnimatePresence>
+      <motion.main
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -100 }}
+        transition={{ duration: 0.5, type: "tween" }}
+      >
+        <section className={styles.mapContainer}>
+          <div
+            ref={mapContainerRef}
+            style={{ width: "100%", height: "100%" }}
+          />
+        </section>
+        <section className={styles.info}>
+          <p>7 Trips</p> <p>The Last Trip: 6.5Km</p>
+        </section>
+      </motion.main>
+    </AnimatePresence>
   );
 };
 

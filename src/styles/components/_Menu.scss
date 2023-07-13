@@ -23,7 +23,12 @@
         color: #000;
         font-size: 1.2rem;
         font-weight: 600;
+        transition: 0.2s ease-in-out;
         //letter-spacing: 2px;
+      }
+
+      & .link:active {
+        scale: 1.2;
       }
     }
   }

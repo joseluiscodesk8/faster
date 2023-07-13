@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
 import styles from "../styles/index.module.scss";
 
 const Wallet = () => {
@@ -25,14 +26,20 @@ const Wallet = () => {
   };
 
   return (
-    <>
-      <main className={styles.walletContainer}>
+    <AnimatePresence>
+      <motion.main
+        className={styles.walletContainer}
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -100 }}
+        transition={{ duration: 0.5, type: "tween" }}
+      >
         <section className={styles.wallet}>
           <h1>Wallet: 12,000</h1>
         </section>
 
         <section className={styles.recargarWallet}>
-          <Link href={"#"}>
+          <Link href={"/RecargarWallet"}>
             <h2>Recargar wallet</h2>
           </Link>
         </section>
@@ -48,8 +55,8 @@ const Wallet = () => {
             </section>
           ))}
         </section>
-      </main>
-    </>
+      </motion.main>
+    </AnimatePresence>
   );
 };
 
