@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import styles from "../styles/index.module.scss";
 import Link from "next/link";
@@ -12,7 +12,7 @@ const RecargarWallet = () => {
   });
   const [success, setSuccess] = useState(false);
   const [name, setName] = useState("");
-  const [pay, setPay] = useState("");
+  const [selectedPay, setSelectedPay] = useState("");
   const [selectedBank, setSelectedBank] = useState("");
 
   const payOptions = [
@@ -37,6 +37,10 @@ const RecargarWallet = () => {
 
   const handleBankChange = (event) => {
     setSelectedBank(event.target.value);
+  };
+
+  const handlePayChange = (event) => {
+    setSelectedPay(event.target.value);
   };
 
   const handleChange = (e) => {
@@ -85,6 +89,7 @@ const RecargarWallet = () => {
       soatImage: "",
     });
   };
+
   return (
     <AnimatePresence>
       <div className={styles.container}>
@@ -99,20 +104,20 @@ const RecargarWallet = () => {
             <section className={styles.inputContainer}>
               <label className={styles.fristLabel}>Pay:</label>
               <select
-                name="Pay"
-                value={formData.lastName}
-                onChange={handleChange}
+                name="selectedPay"
+                value={selectedPay}
+                onChange={handlePayChange}
                 onFocus={handleInputFocus}
                 onBlur={handleInputBlur}
                 required
                 className={styles.fristInput}
               >
-                <option value={""}>selecciones medio de pago</option>
-                {payOptions.map((pay) => {
-                  <option hey={pay.value} value={pay.value}>
+                <option value="">selecciones medio de pago</option>
+                {payOptions.map((pay) => (
+                  <option key={pay.value} value={pay.value}>
                     {pay.label}
-                  </option>;
-                })}
+                  </option>
+                ))}
               </select>
             </section>
 
@@ -120,8 +125,8 @@ const RecargarWallet = () => {
               <label className={styles.fristLabel}>Banco:</label>
               <select
                 name="banco"
-                value={formData.firstName}
-                onChange={handleChange}
+                value={selectedBank}
+                onChange={handleBankChange}
                 onFocus={handleInputFocus}
                 onBlur={handleInputBlur}
                 required
@@ -167,8 +172,16 @@ const RecargarWallet = () => {
             <input
               className={styles.submit}
               type="submit"
+              value="Enviar"
               onChange={handleChange}
+              onClick={handleSubmit}
             />
+
+            {success && (
+              <p className={styles.successMessage}>
+                ¡Pago realizado de manera exitosa!
+              </p>
+            )}
           </section>
           <button>
             <Link href={"/Wallet"}>Volver a faster</Link>

@@ -22,7 +22,7 @@ const Manu = () => {
             </Link>
           </li>
           <li>
-            <Link href={"/"} className={styles.link}>
+            <Link href={"/Help"} className={styles.link}>
               Help
             </Link>
           </li>
